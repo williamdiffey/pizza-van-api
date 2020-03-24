@@ -41,20 +41,20 @@ timesRouter
       .catch(next)
   })
 
-timesRouter
-  .route('/api/times/:item_id')
-    .patch((req, res, next) => {
-    const { pizzaname, blurb, img } = req.params
-    const newItemFields = { pizzaname, blurb, img}
-    timesService.patchItem(
-    req.app.get('db'), item_id, newItemFields)
+  .patch(bodyParser,(req, res, next) => {
+    const { id, date, open, close } = req.body
+    const newFields = { date, open, close}
+    timeService.updateTime(
+    req.app.get('db'), id, newFields)
 
     .then(numRowsAffected => {
-    logger.info(`pizza with ${name} updated`)
+    logger.info(`pizza with ${id} updated`)
     res.status(204).end()
     })
       .catch(next)
   })
+
+
 
 
 

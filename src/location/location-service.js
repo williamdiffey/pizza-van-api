@@ -23,8 +23,8 @@ const locationService = {
       .delete()
   },
 
-  updateLocation(db, id, newItemFields) {
-    return db('pizza_location')
+  updateLocation(db, id, newFields) {
+    return db('pizza_menu')
       .where({ id })
       .update(newFields)
   },

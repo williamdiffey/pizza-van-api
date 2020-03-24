@@ -53,16 +53,14 @@ menuRouter
       .catch(next)
   })
 
-menuRouter
-  .route('/api/menu/:item_id')
-    .patch((req, res, next) => {
-    const { pizzaname, blurb, img } = req.params
-    const newItemFields = { pizzaname, blurb, img}
-    menuService.patchItem(
-    req.app.get('db'), item_id, newItemFields)
+  .patch(bodyParser,(req, res, next) => {
+    const { id, pizzaname, blurb, img } = req.body
+    const newFields = { pizzaname, blurb, img}
+    menuService.updateItem(
+    req.app.get('db'), id, newFields)
 
     .then(numRowsAffected => {
-    logger.info(`pizza with ${name} updated`)
+    logger.info(`pizza with ${id} updated`)
     res.status(204).end()
     })
       .catch(next)

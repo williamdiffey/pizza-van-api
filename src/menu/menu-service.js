@@ -29,7 +29,7 @@ const menuService = {
       .delete()
   },
 
-  updateItem(db, id, newItemFields) {
+  updateItem(db, id, newFields) {
     return db('pizza_menu')
       .where({ id })
       .update(newFields)

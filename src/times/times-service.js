@@ -23,8 +23,8 @@ const timesService = {
       .delete()
   },
 
-  updateTime(db, id, newItemFields) {
-    return db('pizza_times')
+  updateTime(db, id, newFields) {
+    return db('pizza_menu')
       .where({ id })
       .update(newFields)
   },

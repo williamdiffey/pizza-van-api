@@ -41,16 +41,14 @@ locationRouter
       .catch(next)
   })
 
-locationRouter
-  .route('/api/location/:item_id')
-    .patch((req, res, next) => {
-    const { pizzaname, blurb, img } = req.params
-    const newItemFields = { pizzaname, blurb, img}
-    locationService.patchLocation(
-    req.app.get('db'), item_id, newItemFields)
+  .patch(bodyParser,(req, res, next) => {
+    const { id, geolocation, name } = req.body
+    const newFields = { geolocation, name }
+    locationService.updateItem(
+    req.app.get('db'), id, newFields)
 
     .then(numRowsAffected => {
-    logger.info(`pizza with ${name} updated`)
+    logger.info(`location with ${id} updated`)
     res.status(204).end()
     })
       .catch(next)
