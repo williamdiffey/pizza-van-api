@@ -12,3 +12,5 @@
 {"message":"Times with 1 deleted.","level":"info"}
 {"message":"location with 1 deleted.","level":"info"}
 {"message":"pizza with 5 updated","level":"info"}
+{"message":"pizza with 2 updated","level":"info"}
+{"message":"location with 3 updated","level":"info"}

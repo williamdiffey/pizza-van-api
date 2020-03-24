@@ -24,7 +24,7 @@ const timesService = {
   },
 
   updateTime(db, id, newFields) {
-    return db('pizza_menu')
+    return db('pizza_times')
       .where({ id })
       .update(newFields)
   },

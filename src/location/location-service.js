@@ -24,7 +24,7 @@ const locationService = {
   },
 
   updateLocation(db, id, newFields) {
-    return db('pizza_menu')
+    return db('pizza_location')
       .where({ id })
       .update(newFields)
   },

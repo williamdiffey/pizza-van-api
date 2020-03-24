@@ -44,7 +44,7 @@ locationRouter
   .patch(bodyParser,(req, res, next) => {
     const { id, geolocation, name } = req.body
     const newFields = { geolocation, name }
-    locationService.updateItem(
+    locationService.updateLocation(
     req.app.get('db'), id, newFields)
 
     .then(numRowsAffected => {

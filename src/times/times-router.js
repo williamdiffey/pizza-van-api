@@ -44,7 +44,7 @@ timesRouter
   .patch(bodyParser,(req, res, next) => {
     const { id, date, open, close } = req.body
     const newFields = { date, open, close}
-    timeService.updateTime(
+    timesService.updateTime(
     req.app.get('db'), id, newFields)
 
     .then(numRowsAffected => {
