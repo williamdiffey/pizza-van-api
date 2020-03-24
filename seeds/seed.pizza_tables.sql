@@ -24,4 +24,9 @@ VALUES
   ('2020/7/7', '11:30', '19:00'),
   ('2020/7/10', '12:30', '21:45');
 
+INSERT INTO pizza_location (geolocation, name)
+VALUES
+  ('37.555869, 126.973244', 'Seoul Station'),
+  ('37.544352, 127.037418', '서울숲');
+
 COMMIT;

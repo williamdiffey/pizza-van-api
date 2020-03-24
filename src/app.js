@@ -6,6 +6,7 @@ const { NODE_ENV } = require('./config')
 const menuRouter = require('./menu/menu-router')
 const authRouter = require('./auth/auth-router')
 const timesRouter = require('./times/times-router')
+const locationRouter = require('./location/location-router')
 
 const app = express()
 
@@ -18,9 +19,10 @@ app.use(helmet())
 app.use(menuRouter)
 app.use(authRouter)
 app.use(timesRouter)
+app.use(locationRouter)
 
 app.get('/', (req, res) => {
-  res.send('Hello, world!')
+  res.send('Pizzzzzzza!')
 })
 
 
