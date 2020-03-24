@@ -19,4 +19,9 @@ VALUES
   ('Calzone', 'https://images.app.goo.gl/Up2LKVP9GixHG9gB6',
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui');
 
+INSERT INTO pizza_times (date, open, close)
+VALUES
+  ('2020/7/7', '11:30', '19:00'),
+  ('2020/7/10', '12:30', '21:45');
+
 COMMIT;
