@@ -13,14 +13,13 @@ const app = express()
 app.use(morgan((NODE_ENV === 'production') ? 'tiny' : 'common', {
   skip: () => NODE_ENV === 'test',
 }))
-app.use(cors())
-app.use(helmet())
 
+app.use(helmet())
 app.use(menuRouter)
 app.use(authRouter)
 app.use(timesRouter)
 app.use(locationRouter)
-
+app.use(cors({origin: 'http://localhost:3000/'}));
 app.get('/', (req, res) => {
   res.send('Pizzzzzzza!')
 })
