@@ -15,13 +15,13 @@ menuRouter
   })
 
   .delete(bodyParser, (req, res, next) => {
-    const { pizzaname } = req.body
-    console.log(pizzaname)   
+    const { id } = req.body
+    console.log(id)   
     menuService.deleteItem(
-    req.app.get('db'), pizzaname)
+    req.app.get('db'), id)
 
     .then(numRowsAffected => {
-    logger.info(`pizza with ${pizzaname} deleted.`)
+    logger.info(`pizza with ${id} deleted.`)
     res.status(204).end()
     })
       .catch(next)

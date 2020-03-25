@@ -23,9 +23,9 @@ const menuService = {
       })
   },
 
-  deleteItem(db, pizzaname) {
+  deleteItem(db, id) {
     return db('pizza_menu')
-      .where({ pizzaname })
+      .where({ id })
       .delete()
   },
 
