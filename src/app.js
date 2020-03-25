@@ -19,7 +19,7 @@ app.use(menuRouter)
 app.use(authRouter)
 app.use(timesRouter)
 app.use(locationRouter)
-app.use(cors({origin: 'http://localhost:3000/'}));
+app.use(cors());
 app.get('/', (req, res) => {
   res.send('Pizzzzzzza!')
 })
