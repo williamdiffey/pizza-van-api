@@ -25,7 +25,7 @@ locationRouter
   })
 
   .post(bodyParser, (req, res, next) => {
-    const { geolocation, name, current } = req.body
+    const { lat, long, name, description } = req.body
     for (const field of ['lat', 'long', 'name', 'description'])
       if (!req.body[field])
         return res.status(400).json({
@@ -42,7 +42,7 @@ locationRouter
   })
 
   .put(bodyParser,(req, res, next) => {
-    const { id, geolocation, name, current } = req.body
+    const { id, lat, long, name, description } = req.body
     const newFields = { lat, long, name, description }
     locationService.updateLocation(
     req.app.get('db'), id, newFields)
