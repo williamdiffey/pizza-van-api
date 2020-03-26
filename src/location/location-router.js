@@ -41,7 +41,7 @@ locationRouter
       .catch(next)
   })
 
-  .patch(bodyParser,(req, res, next) => {
+  .put(bodyParser,(req, res, next) => {
     const { id, geolocation, name, current } = req.body
     const newFields = { geolocation, name, current }
     locationService.updateLocation(

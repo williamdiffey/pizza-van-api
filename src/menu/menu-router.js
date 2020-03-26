@@ -53,7 +53,7 @@ menuRouter
       .catch(next)
   })
 
-  .patch(bodyParser,(req, res, next) => {
+  .put(bodyParser,(req, res, next) => {
     const { id, pizzaname, blurb, price, rank } = req.body
     const newFields = { pizzaname, blurb, price, rank}
     menuService.updateItem(

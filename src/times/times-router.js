@@ -41,7 +41,7 @@ timesRouter
       .catch(next)
   })
 
-  .patch(bodyParser,(req, res, next) => {
+  .put(bodyParser,(req, res, next) => {
     const { id, date, open, close } = req.body
     const newFields = { date, open, close}
     timesService.updateTime(

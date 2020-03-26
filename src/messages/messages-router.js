@@ -41,7 +41,7 @@ messagesRouter
       .catch(next)
   })
 
-  .patch(bodyParser,(req, res, next) => {
+  .put(bodyParser,(req, res, next) => {
     const { id, message } = req.body
     const newFields = { message }
     messagesService.updateMessages(
