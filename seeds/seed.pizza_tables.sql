@@ -25,10 +25,9 @@ VALUES
   ('9th March 2020', '11:30', '19:00'),
   ('May Probably', '12:30', '21:45');
 
-INSERT INTO pizza_location (geolocation, name, current)
+INSERT INTO pizza_location (lat, long, name, description)
 VALUES
-  ('37.555869, 126.973244', 'Seoul Station', false),
-  ('37.544352, 127.037418', '서울숲', true);
+  ('37.555869', '126.973244', 'Seoul Station', 'near exit 109');
 
 INSERT INTO pizza_messages (message)
 VALUES

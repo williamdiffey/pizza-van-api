@@ -26,13 +26,13 @@ locationRouter
 
   .post(bodyParser, (req, res, next) => {
     const { geolocation, name, current } = req.body
-    for (const field of ['geolocation', 'name', 'current'])
+    for (const field of ['lat', 'long', 'name', 'description'])
       if (!req.body[field])
         return res.status(400).json({
           error: `Missing '${field}' in request body`
         })
       
-          const newItem = { geolocation, name, current }
+          const newItem = { lat, long, name, description }
             locationService.insertLocation(req.app.get('db'), newItem)
               .then(item => {
                 res.status(201).end()
@@ -43,7 +43,7 @@ locationRouter
 
   .put(bodyParser,(req, res, next) => {
     const { id, geolocation, name, current } = req.body
-    const newFields = { geolocation, name, current }
+    const newFields = { lat, long, name, description }
     locationService.updateLocation(
     req.app.get('db'), id, newFields)
 
