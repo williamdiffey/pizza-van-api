@@ -28,7 +28,7 @@ menuRouter
   })
 
   .post(bodyParser, (req, res, next) => {
-    const { pizzaname, blurb, img } = req.body
+    const { pizzaname, blurb, price, rank } = req.body
     for (const field of ['pizzaname', 'blurb', 'price', 'rank'])
       if (!req.body[field])
         return res.status(400).json({
