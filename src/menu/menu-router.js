@@ -22,14 +22,14 @@ menuRouter
 
     .then(numRowsAffected => {
     logger.info(`pizza with ${id} deleted.`)
-    res.status(204).end()
+    res.status(201).end()
     })
       .catch(next)
   })
 
   .post(bodyParser, (req, res, next) => {
     const { pizzaname, blurb, img } = req.body
-    for (const field of ['pizzaname', 'blurb', 'img'])
+    for (const field of ['pizzaname', 'blurb', 'price', 'rank'])
       if (!req.body[field])
         return res.status(400).json({
           error: `Missing '${field}' in request body`
@@ -44,7 +44,7 @@ menuRouter
           return res.status(400).json({ error: `Item with that name already in menu` })
     
     
-          const newItem = { pizzaname, img, blurb }
+          const newItem = { pizzaname, price, blurb, rank }
             menuService.insertMenuItem(req.app.get('db'), newItem)
               .then(item => {
                 res.status(201).end()
@@ -54,8 +54,8 @@ menuRouter
   })
 
   .patch(bodyParser,(req, res, next) => {
-    const { id, pizzaname, blurb, img } = req.body
-    const newFields = { pizzaname, blurb, img}
+    const { id, pizzaname, blurb, price, rank } = req.body
+    const newFields = { pizzaname, blurb, price, rank}
     menuService.updateItem(
     req.app.get('db'), id, newFields)
 

@@ -25,14 +25,14 @@ locationRouter
   })
 
   .post(bodyParser, (req, res, next) => {
-    const { geolocation, name } = req.body
-    for (const field of ['geolocation', 'name'])
+    const { geolocation, name, current } = req.body
+    for (const field of ['geolocation', 'name', 'current'])
       if (!req.body[field])
         return res.status(400).json({
           error: `Missing '${field}' in request body`
         })
       
-          const newItem = { geolocation, name }
+          const newItem = { geolocation, name, current }
             locationService.insertLocation(req.app.get('db'), newItem)
               .then(item => {
                 res.status(201).end()
@@ -42,8 +42,8 @@ locationRouter
   })
 
   .patch(bodyParser,(req, res, next) => {
-    const { id, geolocation, name } = req.body
-    const newFields = { geolocation, name }
+    const { id, geolocation, name, current } = req.body
+    const newFields = { geolocation, name, current }
     locationService.updateLocation(
     req.app.get('db'), id, newFields)
 
