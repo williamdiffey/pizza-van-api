@@ -6,6 +6,7 @@ const { NODE_ENV } = require('./config')
 const menuRouter = require('./menu/menu-router')
 const authRouter = require('./auth/auth-router')
 const timesRouter = require('./times/times-router')
+const messagesRouter = require('./messages/messages-router')
 const locationRouter = require('./location/location-router')
 
 const app = express()
@@ -28,6 +29,8 @@ app.use(menuRouter)
 app.use(authRouter)
 app.use(timesRouter)
 app.use(locationRouter)
+app.use(locationRouter)
+app.use(messagesRouter)
 
 app.get('/', (req, res) => {
   res.send('Pizzzzzzza!')

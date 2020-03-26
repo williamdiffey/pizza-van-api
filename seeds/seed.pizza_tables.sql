@@ -3,6 +3,9 @@ BEGIN;
 TRUNCATE
   pizza_menu,
   pizza_users,
+  pizza_times,
+  pizza_location,
+  pizza_messages
   RESTART IDENTITY CASCADE;
 
 INSERT INTO pizza_users (user_name, password)
@@ -12,21 +15,25 @@ VALUES
   
   -- IamPizzaM@n
 
-INSERT INTO pizza_menu (pizzaname, img, blurb)
+INSERT INTO pizza_menu (pizzaname, price, rank, blurb)
 VALUES
-  ('Supreme', 'https://images.app.goo.gl/W5EMVftSGQZLCFk48',
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui'),
-  ('Calzone', 'https://images.app.goo.gl/Up2LKVP9GixHG9gB6',
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus consequuntur deserunt commodi, nobis qui');
+  ('Supreme', '10,000', '1', 'Recreate the 1990s at Pizzahut'),
+  ('Calzone', '15,000', '2', 'A foldy little chap - popular with Tony Soprano and his crew');
 
 INSERT INTO pizza_times (date, open, close)
 VALUES
-  ('2020/7/7', '11:30', '19:00'),
-  ('2020/7/10', '12:30', '21:45');
+  ('9th March 2020', '11:30', '19:00'),
+  ('May Probably', '12:30', '21:45');
 
-INSERT INTO pizza_location (geolocation, name)
+INSERT INTO pizza_location (geolocation, name, current)
 VALUES
-  ('37.555869, 126.973244', 'Seoul Station'),
-  ('37.544352, 127.037418', '서울숲');
+  ('37.555869, 126.973244', 'Seoul Station', false),
+  ('37.544352, 127.037418', '서울숲', true);
+
+INSERT INTO pizza_messages (message)
+VALUES
+  ('You are now in the fish_law Pizza Van App - Welcome');
+  
+
 
 COMMIT;
