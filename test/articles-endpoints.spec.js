@@ -6,9 +6,7 @@ describe('Menu Endpoints', function() {
   let db
 
   const {
-    testUsers,
     testmenu,
-    testComments,
   } = helpers.makemenuFixtures()
 
   before('make knex instance', () => {

@@ -7,7 +7,7 @@ const menuRouter = require('./menu/menu-router')
 const authRouter = require('./auth/auth-router')
 const timesRouter = require('./times/times-router')
 const messagesRouter = require('./messages/messages-router')
-const locationRouter = require('./location/location-router')
+const contactsRouter = require('./contacts/contacts-router')
 
 const app = express()
 
@@ -29,8 +29,8 @@ app.use(menuRouter)
 app.use(authRouter)
 app.use(timesRouter)
 app.use(locationRouter)
-app.use(locationRouter)
 app.use(messagesRouter)
+app.use(contactsRouter)
 
 app.get('/', (req, res) => {
   res.send('Pizzzzzzza!')

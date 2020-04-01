@@ -21,14 +21,16 @@ function makeMenuArray() {
     {
       id: 1,
       pizzaname: 'Supreme',
-      img: 'https://images.app.goo.gl/W5EMVftSGQZLCFk48',
+      price: '10',
       blurb: 'How-to',
+      rank: '1'
     },
     {
       id: 2,
       pizzaname: 'Calzone',
-      img: 'https://images.app.goo.gl/W5EMVftSGQZLCFk48',
+      price: '20',
       blurb: 'How-to',
+      rank: '2',
     },
   ]
 }

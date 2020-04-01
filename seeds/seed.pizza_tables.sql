@@ -34,5 +34,9 @@ VALUES
   ('You are now in the fish_law Pizza Van App - Welcome');
   
 
+INSERT INTO pizza_contacts (contacts)
+VALUES 
+('{"phone": "010-5265-1422", "facebook": "https://www.facebook.com/dougspizza/", "instragram": "https://www.instagram.com/dougs_pizza/"}');
+
 
 COMMIT;
