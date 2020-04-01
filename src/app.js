@@ -7,6 +7,7 @@ const menuRouter = require('./menu/menu-router')
 const authRouter = require('./auth/auth-router')
 const timesRouter = require('./times/times-router')
 const messagesRouter = require('./messages/messages-router')
+const locationRouter = require('./location/location-router')
 const contactsRouter = require('./contacts/contacts-router')
 
 const app = express()
