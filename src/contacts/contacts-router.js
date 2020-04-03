@@ -7,7 +7,7 @@ const bodyParser = express.json()
 contactsRouter
   .route('/api/contacts')
   .get((req, res, next) => {
-    contactsService.getcontacts(req.app.get('db'))  
+    contactsService.getContacts(req.app.get('db'))  
     .then(contacts => {
       res.json(contacts)
     })  
@@ -16,7 +16,7 @@ contactsRouter
 
   .delete(bodyParser, (req, res, next) => {
     const { id } = req.body
-    contactsService.deletecontacts(req.app.get('db'), id)
+    contactsService.deleteContacts(req.app.get('db'), id)
     .then(numRowsAffected => {
     logger.info(`contacts with ${id} deleted.`)
     res.status(204).end()
@@ -25,15 +25,15 @@ contactsRouter
   })
 
   .post(bodyParser, (req, res, next) => {
-    const { message } = req.body
-    for (const field of ['message'])
+    const { id, contact } = req.body
+    for (const field of ['id', 'contact_type', 'contact_details'])
       if (!req.body[field])
         return res.status(400).json({
           error: `Missing '${field}' in request body`
         })
       
-          const newItem = { message }
-            contactsService.insertcontacts(req.app.get('db'), newItem)
+          const newItem = { id, contact_type, contact_details }
+            contactsService.insertContacts(req.app.get('db'), newItem)
               .then(item => {
                 res.status(201).end()
            })
@@ -43,8 +43,8 @@ contactsRouter
 
   .put(bodyParser,(req, res, next) => {
     const { id, message } = req.body
-    const newFields = { message }
-    contactsService.updatecontacts(
+    const newFields = { contact_type, contact_details }
+    contactsService.updateContacts(
     req.app.get('db'), id, newFields)
 
     .then(numRowsAffected => {

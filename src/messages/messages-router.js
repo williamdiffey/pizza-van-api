@@ -25,14 +25,14 @@ messagesRouter
   })
 
   .post(bodyParser, (req, res, next) => {
-    const { message } = req.body
-    for (const field of ['message'])
+    const { id, message } = req.body
+    for (const field of ['id', 'message'])
       if (!req.body[field])
         return res.status(400).json({
           error: `Missing '${field}' in request body`
         })
       
-          const newItem = { message }
+          const newItem = { id, message }
             messagesService.insertMessages(req.app.get('db'), newItem)
               .then(item => {
                 res.status(201).end()

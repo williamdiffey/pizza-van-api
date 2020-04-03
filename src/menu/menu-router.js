@@ -28,8 +28,8 @@ menuRouter
   })
 
   .post(bodyParser, (req, res, next) => {
-    const { pizzaname, blurb, price, rank } = req.body
-    for (const field of ['pizzaname', 'blurb', 'price', 'rank'])
+    const { id, pizzaname, blurb, price, rank } = req.body
+    for (const field of ['id','pizzaname', 'blurb', 'price', 'rank'])
       if (!req.body[field])
         return res.status(400).json({
           error: `Missing '${field}' in request body`
@@ -44,7 +44,7 @@ menuRouter
           return res.status(400).json({ error: `Item with that name already in menu` })
     
     
-          const newItem = { pizzaname, price, blurb, rank }
+          const newItem = { id, pizzaname, price, blurb, rank }
             menuService.insertMenuItem(req.app.get('db'), newItem)
               .then(item => {
                 res.status(201).end()

@@ -25,14 +25,14 @@ timesRouter
   })
 
   .post(bodyParser, (req, res, next) => {
-    const { date, open, close } = req.body
-    for (const field of ['date', 'open', 'close'])
+    const { id, date, open, close } = req.body
+    for (const field of ['id', 'date', 'open', 'close'])
       if (!req.body[field])
         return res.status(400).json({
           error: `Missing '${field}' in request body`
         })
       
-          const newItem = { date, open, close }
+          const newItem = { id, date, open, close }
             timesService.insertTimes(req.app.get('db'), newItem)
               .then(item => {
                 res.status(201).end()

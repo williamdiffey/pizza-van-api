@@ -1,13 +1,13 @@
 const xss = require('xss')
 
 const contactsService = {
-  getcontacts(db) {
+  getContacts(db) {
     return db 
     .select('*')
     .from('pizza_contacts')
   },
 
-  insertcontacts(db, newItem) {
+  insertContacts(db, newItem) {
     return db
       .insert(newItem)
       .into('pizza_contacts')
@@ -17,13 +17,13 @@ const contactsService = {
       })
   },
 
-  deletecontacts(db, id) {
+  deleteContacts(db, id) {
     return db('pizza_contacts')
       .where({ id })
       .delete()
   },
 
-  updatecontacts(db, id, newFields) {
+  updateContacts(db, id, newFields) {
     return db('pizza_contacts')
       .where({ id })
       .update(newFields)
