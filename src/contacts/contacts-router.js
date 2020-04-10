@@ -3,7 +3,7 @@ const contactsService = require('./contacts-service')
 const contactsRouter = express.Router()
 const logger = require('../middleware/logger')
 const bodyParser = express.json()
-const { requireAuth } = require('../jwt-auth')
+const { requireAuth } = require('../middleware/jwt-auth')
 
 contactsRouter
   .route('/api/contacts')

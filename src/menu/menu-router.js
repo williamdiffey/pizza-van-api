@@ -3,6 +3,7 @@ const menuService = require('./menu-service')
 const menuRouter = express.Router()
 const logger = require('../middleware/logger')
 const bodyParser = express.json()
+const { requireAuth } = require('../middleware/jwt-auth')
 
 menuRouter
   .route('/api/menu')
@@ -27,7 +28,7 @@ menuRouter
       .catch(next)
   })
 
-  .post(bodyParser, (req, res, next) => {
+  .post(requireAuth, bodyParser, (req, res, next) => {
     const { id, pizzaname, blurb, price, rank } = req.body
     for (const field of ['id','pizzaname', 'blurb', 'price', 'rank'])
       if (!req.body[field])
