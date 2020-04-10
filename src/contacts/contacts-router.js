@@ -3,6 +3,7 @@ const contactsService = require('./contacts-service')
 const contactsRouter = express.Router()
 const logger = require('../middleware/logger')
 const bodyParser = express.json()
+const { requireAuth } = require('../jwt-auth')
 
 contactsRouter
   .route('/api/contacts')
@@ -14,7 +15,7 @@ contactsRouter
     .catch(next)
   })
 
-  .delete(bodyParser, (req, res, next) => {
+  .delete(requireAuth, bodyParser, (req, res, next) => {
     const { id } = req.body
     contactsService.deleteContacts(req.app.get('db'), id)
     .then(numRowsAffected => {
@@ -24,7 +25,7 @@ contactsRouter
       .catch(next)
   })
 
-  .post(bodyParser, (req, res, next) => {
+  .post(requireAuth, bodyParser, (req, res, next) => {
     const { id, contact } = req.body
     for (const field of ['id', 'contact_type', 'contact_details'])
       if (!req.body[field])
@@ -41,7 +42,7 @@ contactsRouter
       .catch(next)
   })
 
-  .put(bodyParser,(req, res, next) => {
+  .put(requireAuth, bodyParser,(req, res, next) => {
     const { id, message } = req.body
     const newFields = { contact_type, contact_details }
     contactsService.updateContacts(
