@@ -3,6 +3,7 @@ const locationService = require('./location-service')
 const locationRouter = express.Router()
 const logger = require('../middleware/logger')
 const bodyParser = express.json()
+const { requireAuth } = require('../middleware/jwt-auth')
 
 locationRouter
   .route('/api/locations')
@@ -14,7 +15,7 @@ locationRouter
     .catch(next)
   })
 
-  .delete(bodyParser, (req, res, next) => {
+  .delete(requireAuth, bodyParser, (req, res, next) => {
     const { id } = req.body
     locationService.deleteLocation(req.app.get('db'), id)
     .then(numRowsAffected => {
@@ -24,7 +25,7 @@ locationRouter
       .catch(next)
   })
 
-  .post(bodyParser, (req, res, next) => {
+  .post(requireAuth, bodyParser, (req, res, next) => {
     const { id, lat, long, name, description } = req.body
     for (const field of ['id', 'lat', 'long', 'name', 'description'])
       if (!req.body[field])
@@ -41,7 +42,7 @@ locationRouter
       .catch(next)
   })
 
-  .put(bodyParser,(req, res, next) => {
+  .put(requireAuth, bodyParser,(req, res, next) => {
     const { id, lat, long, name, description } = req.body
     const newFields = { lat, long, name, description }
     locationService.updateLocation(

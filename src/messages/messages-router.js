@@ -3,6 +3,7 @@ const messagesService = require('./messages-service')
 const messagesRouter = express.Router()
 const logger = require('../middleware/logger')
 const bodyParser = express.json()
+const { requireAuth } = require('../middleware/jwt-auth')
 
 messagesRouter
   .route('/api/messages')
@@ -14,7 +15,7 @@ messagesRouter
     .catch(next)
   })
 
-  .delete(bodyParser, (req, res, next) => {
+  .delete(requireAuth, bodyParser, (req, res, next) => {
     const { id } = req.body
     messagesService.deleteMessages(req.app.get('db'), id)
     .then(numRowsAffected => {
@@ -24,7 +25,7 @@ messagesRouter
       .catch(next)
   })
 
-  .post(bodyParser, (req, res, next) => {
+  .post(requireAuth, bodyParser, (req, res, next) => {
     const { id, message } = req.body
     for (const field of ['id', 'message'])
       if (!req.body[field])
@@ -41,7 +42,7 @@ messagesRouter
       .catch(next)
   })
 
-  .put(bodyParser,(req, res, next) => {
+  .put(requireAuth, bodyParser,(req, res, next) => {
     const { id, message } = req.body
     const newFields = { message }
     messagesService.updateMessages(

@@ -3,6 +3,7 @@ const timesService = require('./times-service')
 const timesRouter = express.Router()
 const logger = require('../middleware/logger')
 const bodyParser = express.json()
+const { requireAuth } = require('../middleware/jwt-auth')
 
 timesRouter
   .route('/api/times')
@@ -14,7 +15,7 @@ timesRouter
     .catch(next)
   })
 
-  .delete(bodyParser, (req, res, next) => {
+  .delete(requireAuth, bodyParser, (req, res, next) => {
     const { id } = req.body
     timesService.deleteTime(req.app.get('db'), id)
     .then(numRowsAffected => {
@@ -24,7 +25,7 @@ timesRouter
       .catch(next)
   })
 
-  .post(bodyParser, (req, res, next) => {
+  .post(requireAuth, bodyParser, (req, res, next) => {
     const { id, date, open, close } = req.body
     for (const field of ['id', 'date', 'open', 'close'])
       if (!req.body[field])
@@ -41,7 +42,7 @@ timesRouter
       .catch(next)
   })
 
-  .put(bodyParser,(req, res, next) => {
+  .put(requireAuth, bodyParser,(req, res, next) => {
     const { id, date, open, close } = req.body
     const newFields = { date, open, close}
     timesService.updateTime(
